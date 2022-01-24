@@ -1,4 +1,4 @@
-export async function getStaticProps({ req }) {
+export async function getServerSideProps({ req }) {
   return {
     props: {
       countryCode: req?.headers["cloudfront-viewer-country"] || "global",
