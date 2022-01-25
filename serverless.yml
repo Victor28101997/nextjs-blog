@@ -11,7 +11,7 @@ nextjs-blog:
               CloudFront-Is-Tablet-Viewer,
               CloudFront-Viewer-Country,
             ]
-    handler: handler.onOriginEventReceived
+    # handler: handler.onOriginEventReceived
   org: victor2810
   app: nextjs-blog
   service: webapp
