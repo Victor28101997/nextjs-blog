@@ -1,11 +1,11 @@
 export async function getServerSideProps({ req }) {
   return {
     props: {
-      countryCode: req?.headers["cloudfront-viewer-country"] || "global",
+      req,
     },
   };
 }
 
-export default function serversidePage({ countryCode }) {
-  return <>{countryCode}</>;
+export default function serversidePage({ req }) {
+  return <>{JSON.stringify(req)}</>;
 }
