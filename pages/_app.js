@@ -1,8 +1,12 @@
+import React from "react";
 import "../styles/global.css";
+import { wrapper, store } from "../store";
 
-export default function App({ Component, pageProps }) {
-  useEffect(() => {
-    console.log("_app mounted!!");
-  }, []);
-  return <Component {...pageProps} />;
+class MyApp extends React.Component {
+  render() {
+    const { Component, pageProps } = this.props;
+    return <Component {...pageProps} />;
+  }
 }
+
+export default wrapper.withRedux(MyApp);
