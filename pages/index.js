@@ -5,6 +5,9 @@ import { useSelector } from "react-redux";
 import Link from "next/link";
 import Date from "../components/date";
 import { wrapper } from "../store";
+import counterReducer from "../redux/counter";
+import counterSaga from "../redux/counterSaga";
+import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
 // export async function getStaticProps() {
 //   const allPostsData = getSortedPostsData();
@@ -28,11 +31,15 @@ export const getStaticProps = wrapper.getStaticProps(
 );
 
 export default function Home({ allPostsData }) {
-  const { tick } = useSelector((state) => state);
+  // useInjectReducer({ key: "counter", reducer: counterReducer });
+  // useInjectSaga({ key: "counter", saga: counterSaga });
+  // const { tick } = useSelector((state) => state);
+  const counter = useSelector((state) => state.counter.counter);
   return (
     <Layout home>
       {/* Keep the existing code here */}
-      tick here: {tick}
+      {/* tick here: {tick} */}
+      counter here: {counter}
       {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
@@ -48,6 +55,12 @@ export default function Home({ allPostsData }) {
               </small>
             </li>
           ))}
+          <li className={utilStyles.listItem} key={"demosaga"}>
+            <Link href={`/demosaga`}>
+              <a>Demo Saga Page</a>
+            </Link>
+            <br />
+          </li>
         </ul>
       </section>
     </Layout>

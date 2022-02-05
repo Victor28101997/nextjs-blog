@@ -1,7 +1,9 @@
 import React from "react";
-import { connect } from "react-redux";
 import { useSelector } from "react-redux";
 import { wrapper } from "../store";
+import counterSaga from "../redux/counterSaga";
+import counterReducer from "../redux/counter";
+import { useInjectReducer, useInjectSaga } from "redux-injectors";
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
@@ -17,10 +19,12 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
 // Page itself is not connected to Redux Store, it has to render Provider to allow child components to connect to Redux Store
 const Page = ({ custom }) => {
-  const { tick } = useSelector((state) => state);
+  // useInjectReducer({ key: "counter", reducer: counterReducer });
+  // useInjectSaga({ key: "counter", saga: counterSaga });
+  const { counter } = useSelector((state) => state.counter);
   return (
     <div>
-      tick: {tick} custom: {custom}
+      counter: {counter} custom: {custom}
     </div>
   );
 };
